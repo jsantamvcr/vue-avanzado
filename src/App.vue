@@ -12,6 +12,7 @@ import IconPinia from '@/shared/components/icons/IconPinia.vue';
       <h3>Pinia - Ejercicios</h3>
 
       <nav>
+        <RouterLink to="/clients">Clients</RouterLink>
         <RouterLink to="/">Counter Options</RouterLink>
         <RouterLink to="/counter-2">Counter Setup</RouterLink>
       </nav>

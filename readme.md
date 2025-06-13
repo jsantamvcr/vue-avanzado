@@ -44,3 +44,16 @@ npm run build
 ```sh
 npm run lint
 ```
+
+# Backend server
+
+The backend server is a simple Node.js application that provides an API for the frontend. It is built using Express and can be started with the following command:
+
+```sh
+yarn install
+```
+
+- Rise de server 
+```sh
+yarn backend
+
