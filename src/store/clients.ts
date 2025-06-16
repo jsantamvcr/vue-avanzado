@@ -1,8 +1,8 @@
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { defineStore } from 'pinia';
 import type { Client } from "@/clients/interfaces/client";
 
-const useClientsStore = defineStore('clientsStore', () => {
+export const useClientsStore = defineStore('clients', () => {
 
     const currentPage = ref<number>(1);
     const totalPages = ref<number>(5);
@@ -14,22 +14,22 @@ const useClientsStore = defineStore('clientsStore', () => {
         totalPages,
         clients,
 
-        // Getters (COMPUTED PROPERTIES)
-        /*squareCount: computed( () => count.value * count.value ),*/
-
         // Actions
-        setClient(newClients: Client[]) {
+        setClients(newClients: Client[]) {
             clients.value = newClients;
         },
+        setPage(page: number) {
+            if (currentPage.value === page) return;
+            if (page <= 0) return;
+            if (page > totalPages.value) return;
 
-        setPage(newPage: number) {
-            if (currentPage.value === newPage) return;
+            currentPage.value = page;
+        },
 
-            currentPage.value = newPage;
-        }
-
-
+        //Getters
+        getPageNumbers: computed(
+            //return [1,2,3,4,5, n] base on totalPages in state
+            () => [...new Array(totalPages.value)].map((v, i) => i + 1)
+        )
     }
 });
-
-export default useClientsStore;
